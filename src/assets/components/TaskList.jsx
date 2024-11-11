@@ -1,22 +1,17 @@
-import Task from "./Task.jsx";
+import TaskItem from "./TaskItem.jsx";
 
-const TaskList = ({ tasks, removeTask, toggleTaskState, activateEditMode }) => {
-    const sortedTasks = tasks.sort((a, b) => {
-        return (b.priority - a.priority) - (b.state - a.state) * 2;
-    });
-
+const TaskList = ({ todos, deleteTodo, updateTodoState, handleEditionMode }) => {
     return (
         <div className="col-8">
             <h3 className="text-center">Lista de tareas pendientes</h3>
             <ul>
-                {sortedTasks.length > 0 ? (
-                    sortedTasks.map(task => (
-                        <Task
+                {todos.length > 0 ? (
+                    todos.map((task) => (
+                        <TaskItem
                             key={task.id}
                             task={task}
-                            removeTask={removeTask}
-                            toggleTaskState={toggleTaskState}
-                            activateEditMode={activateEditMode}
+                            removeTask={deleteTodo}
+                            activateEditMode={handleEditionMode}
                         />
                     ))
                 ) : (
